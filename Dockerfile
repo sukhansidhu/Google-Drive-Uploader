@@ -1,7 +1,7 @@
-# Dockerfile
+# Use slim Python base image
 FROM python:3.11-slim
 
-# Install required build dependencies
+# Install system dependencies required for some Python packages
 RUN apt-get update && apt-get install -y \
     gcc \
     build-essential \
@@ -14,11 +14,12 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy all project files
+# Copy all files into the container
 COPY . /app
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Upgrade pip and install dependencies
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Run the bot
+# Default command to run your bot
 CMD ["python", "bot.py"]
