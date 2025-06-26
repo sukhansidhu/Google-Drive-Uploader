@@ -4,5 +4,6 @@ PyDrive
 requests
 urllib3
 URLObject>=2.1.1
-pycryptodome>=3.9.9
+pycrypto>=2.6
 httplib2==0.15.0
+mega.py
